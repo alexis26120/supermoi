@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+out/
+.vscode/
+.DS_Store
+*.log
+.env
+.env.*
+*.exe
+ui/dist/
+ui/build/
+ui/out/
+ui/src-tauri/target/
