@@ -13,7 +13,7 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<Payload | null>(null)
   const [error, setError] = useState("")
-  const API = useMemo(() => import.meta.env.VITE_API_BASE || "http://127.0.0.1:3000", [])
+  const API = useMemo(() => import.meta.env.VITE_API_BASE || "", [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") run() }

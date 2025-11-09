@@ -1,6 +1,7 @@
 import "dotenv/config"
 import OpenAI from "openai"
 import express from "express"
+import cors from "cors"
 import { setTimeout as sleep } from "timers/promises"
 import pLimit from "p-limit"
 
@@ -195,9 +196,11 @@ async function debate(question){
 }
 
 const app = express()
+app.use(cors())
 app.use(express.json({ limit:"1mb" }))
 
 app.get("/health",(_,res)=>res.json({ok:true}))
+app.get("/ping", (req, res) => res.json({ ok: true }))
 app.post("/debate", async (req,res)=>{
   const q = String(req.body?.question||"").trim()
   if(!q) return res.status(400).json({error:"question manquante"})
@@ -209,5 +212,5 @@ app.post("/debate", async (req,res)=>{
   }
 })
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, ()=>{ console.log("http://localhost:"+PORT) })
+const PORT = 3001
+app.listen(PORT, ()=>{ console.log("API http://localhost:"+PORT) })
